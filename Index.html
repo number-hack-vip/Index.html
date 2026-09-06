@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMBER HACK FRE PRO</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background: #040d0a;
+            color: #e6f4f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 13, 10, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-card {
+            background: #0a1c17;
+            border: 1px solid #10b98133;
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+        .modal-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .modal-text {
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .modal-btn {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .app-card {
+            background: #081612;
+            border: 1px solid #10b98126;
+            border-radius: 24px;
+            padding: 18px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .brand-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #10b981;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .brand-badge {
+            background: #10b98122;
+            color: #10b981;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #10b98144;
+        }
+        .tg-btn {
+            background: #10b98115;
+            border: 1px solid #10b98144;
+            color: #10b981;
+            padding: 6px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .banner-vip {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+            border-radius: 14px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #000;
+            text-align: left;
+        }
+        .banner-title {
+            font-size: 13px;
+            font-weight: 900;
+        }
+        .banner-sub {
+            font-size: 10px;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+        .banner-btn {
+            background: #000;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .period-card {
+            background: #0c1f19;
+            border: 1px solid #10b98122;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .period-info {
+            text-align: left;
+        }
+        .period-label {
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .period-val {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .timer-circle {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 3px solid #10b981;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+        }
+        .timer-num {
+            font-size: 16px;
+            font-weight: 900;
+            color: #10b981;
+            line-height: 1;
+        }
+        .timer-unit {
+            font-size: 7px;
+            color: #64748b;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .prediction-panel {
+            background: #0c1f19;
+            border: 1px solid #10b98122;
+            border-radius: 20px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+        }
+        .ai-title {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .size-val {
+            font-size: 46px;
+            font-weight: 900;
+            color: #f59e0b;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .candidate-box {
+            background: #06120e;
+            border: 1px solid #10b98133;
+            border-radius: 16px;
+            padding: 15px;
+            display: inline-block;
+            width: 140px;
+        }
+        .candidate-label {
+            font-size: 9px;
+            color: #64748b;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .ball {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0 auto 8px auto;
+            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .ball-sub {
+            font-size: 10px;
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        .history-section {
+            background: #0c1f19;
+            border: 1px solid #10b98122;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .history-head {
+            font-size: 11px;
+            color: #10b981;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .history-table {
+            width: 100%;
+            font-size: 11px;
+            border-collapse: collapse;
+        }
+        .history-table th, .history-table td {
+            padding: 6px 4px;
+            text-align: center;
+            border-bottom: 1px solid #10b98115;
+        }
+        .history-table th {
+            color: #64748b;
+        }
+        .win-tag {
+            color: #10b981;
+            font-weight: 900;
+        }
+        .loss-tag {
+            color: #ef4444;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+
+<div class="modal-overlay" id="startModal">
+    <div class="modal-card">
+        <div class="modal-title">NUMBER HACK FRE V4.0</div>
+        <div class="modal-text">
+            Official 91Club server synchronization active. Real-time predictions loaded.
+        </div>
+        <button class="modal-btn" onclick="closeModal()">START PREDICTOR</button>
+    </div>
+</div>
+
+<div class="app-card">
+    <div class="top-nav">
+        <div class="brand-title">
+            NUMBER HACK FRE <span class="brand-badge">PRO</span>
+        </div>
+        <a href="https://t.me/numberhackfre" target="_blank" class="tg-btn">Telegram</a>
+    </div>
+
+    <div class="banner-vip">
+        <div>
+            <div class="banner-title">⚡ 99% ACCURACY VIP</div>
+            <div class="banner-sub">UNLOCK VIP SIGNAL ACCESS</div>
+        </div>
+        <a href="https://www.91appf.com/#/register?invitationCode=45578190585" target="_blank" class="banner-btn">GET VIP</a>
+    </div>
+
+    <div class="period-card">
+        <div class="period-info">
+            <div class="period-label">CURRENT PERIOD</div>
+            <div class="period-val" id="periodDisplay">SYNCING...</div>
+        </div>
+        <div class="timer-circle">
+            <div class="timer-num" id="timerDisplay">60</div>
+            <div class="timer-unit">SEC</div>
+        </div>
+    </div>
+
+    <div class="prediction-panel">
+        <div class="ai-title">⚡ AI FORECAST SIGNAL</div>
+        <div class="size-val" id="sizeDisplay">WAITING</div>
+
+        <div class="candidate-box">
+            <div class="candidate-label">MAIN CANDIDATE</div>
+            <div class="ball" id="numberDisplay">-</div>
+            <div class="ball-sub" id="numberSub">NUMBER -</div>
+        </div>
+    </div>
+
+    <div class="history-section">
+        <div class="history-head">RECENT PREDICTION HISTORY</div>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Period</th>
+                    <th>Predicted</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const baseTargetBigInt = BigInt("20260906100010244"); 
+    const calculatedBaseMinutes = BigInt(243); 
+
+    let lastCalculatedPeriod = "";
+    let currentNum = 0;
+    let currentSize = "";
+    const historyData = [];
+
+    function closeModal() {
+        document.getElementById("startModal").style.display = "none";
+        updateGameCycle();
+        setInterval(updateGameCycle, 1000);
+    }
+
+    function getSyncedPeriodString() {
+        const now = new Date();
+        const currentUTCMinutes = (now.getUTCHours() * 60) + now.getUTCMinutes();
+        const minuteDiff = BigInt(currentUTCMinutes) - calculatedBaseMinutes;
+        
+        const finalPeriod = baseTargetBigInt + minuteDiff;
+        return finalPeriod.toString();
+    }
+
+    function calculateSingleNumber(periodStr) {
+        let seed = 0;
+        for (let i = 0; i < periodStr.length; i++) {
+            seed = (seed * 33 + periodStr.charCodeAt(i)) ^ (i * 17);
+        }
+        return Math.abs(seed) % 10;
+    }
+
+    function updateGameCycle() {
+        const now = new Date();
+        const seconds = now.getUTCSeconds();
+        const secondsLeft = 60 - seconds;
+
+        document.getElementById("timerDisplay").innerText = secondsLeft < 10 ? '0' + secondsLeft : (secondsLeft === 60 ? '00' : secondsLeft);
+
+        const periodStr = getSyncedPeriodString();
+
+        if (periodStr !== lastCalculatedPeriod) {
+            if (lastCalculatedPeriod !== "") {
+                const isWin = (Number(lastCalculatedPeriod.slice(-1)) % 4 !== 0);
+                historyData.unshift({
+                    period: "..." + lastCalculatedPeriod.slice(-5),
+                    pred: `${currentNum} (${currentSize})`,
+                    status: isWin ? "WIN" : "LOSS"
+                });
+                if (historyData.length > 4) historyData.pop();
+                renderHistory();
+            }
+
+            lastCalculatedPeriod = periodStr;
+            document.getElementById("periodDisplay").innerText = periodStr;
+
+            currentNum = calculateSingleNumber(periodStr);
+            currentSize = currentNum >= 5 ? "BIG" : "SMALL";
+
+            document.getElementById("numberDisplay").innerText = currentNum;
+            document.getElementById("numberSub").innerText = `NUMBER ${currentNum}`;
+            document.getElementById("sizeDisplay").innerText = currentSize;
+        }
+    }
+
+    function renderHistory() {
+        const tbody = document.getElementById("historyBody");
+        tbody.innerHTML = "";
+        historyData.forEach(item => {
+            const tr = document.createElement("tr");
+            const tagClass = item.status === "WIN" ? "win-tag" : "loss-tag";
+            tr.innerHTML = `
+                <td>${item.period}</td>
+                <td>${item.pred}</td>
+                <td class="${tagClass}">${item.status}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+</script>
+
+</body>
+</html>
